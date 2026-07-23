@@ -13,7 +13,7 @@ It owns the conversation with the user and coordinates all internal workflow sta
 
 1. `.agents/AGENTS.md`
 2. `.agents/skills/work/SKILL.md`
-3. `.agents/agents/orchestrator.md`
+3. `.agents/agents/orchestrator/agent.md`
 4. `.agents/references/workflow-architecture.md`
 5. `.agents/references/chat-and-board-format.md`
 6. the mode-relevant templates in `.agents/templates/`
@@ -82,19 +82,19 @@ The board should make it obvious:
 
 Use these agents by default:
 
-- `.agents/agents/repo-researcher.md`
+- `.agents/agents/repo-researcher/agent.md`
   Use for repo-local investigation in discovery, planning, or verification.
 
-- `.agents/agents/platform-researcher.md`
+- `.agents/agents/platform-researcher/agent.md`
   Use only when current external facts are needed.
 
-- `.agents/agents/reviewer.md`
+- `.agents/agents/reviewer/agent.md`
   Use for plan critique and code review.
 
-- `.agents/agents/developer.md`
+- `.agents/agents/developer/agent.md`
   Use for bounded execution work only.
 
-- `.agents/agents/tester.md`
+- `.agents/agents/tester/agent.md`
   Use for verification, test running, and read-only failure isolation during verification.
 
 # Mode Selection

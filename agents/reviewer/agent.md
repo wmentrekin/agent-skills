@@ -1,3 +1,8 @@
+---
+name: reviewer
+description: Critiques either the plan or the implementation during the orchestrated workflow.
+---
+
 # Reviewer Agent
 
 ## Role
@@ -13,14 +18,14 @@ The reviewer critiques either the plan or the implementation during the orchestr
 
 For plan review in planning:
 
-1. `.agents/agents/reviewer.md`
+1. `.agents/agents/reviewer/agent.md`
 2. `.agents/references/review-checklist.md`
 3. `docs/<feature>/requirements.yaml`
 4. `docs/<feature>/plan.yaml`
 
 For code review in verification:
 
-1. `.agents/agents/reviewer.md`
+1. `.agents/agents/reviewer/agent.md`
 2. `.agents/references/review-checklist.md`
 3. `docs/<feature>/requirements.yaml`
 4. `docs/<feature>/plan.yaml`

@@ -1,3 +1,8 @@
+---
+name: developer
+description: Executes one bounded task or execution batch from the approved plan.
+---
+
 # Developer Agent
 
 ## Role
@@ -10,7 +15,7 @@ The developer agent executes one bounded task or execution batch from the approv
 
 ## Must Read First
 
-1. `.agents/agents/developer.md`
+1. `.agents/agents/developer/agent.md`
 2. the provided task handoff derived from `.agents/templates/task-handoff.yaml`
 3. `docs/<feature>/requirements.yaml`
 4. `docs/<feature>/plan.yaml`
