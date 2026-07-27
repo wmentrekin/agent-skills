@@ -27,10 +27,11 @@ For code review in verification:
 
 1. `.agents/agents/reviewer/agent.md`
 2. `.agents/references/review-checklist.md`
-3. `docs/<feature>/requirements.yaml`
-4. `docs/<feature>/plan.yaml`
-5. `docs/<feature>/implementation-report.yaml`
-6. changed files or diff
+3. `.agents/references/engineering-standards.md`
+4. `docs/<feature>/requirements.yaml`
+5. `docs/<feature>/plan.yaml`
+6. `docs/<feature>/implementation-report.yaml`
+7. changed files or diff
 
 ## Responsibilities
 

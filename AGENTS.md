@@ -83,11 +83,21 @@ These are internal states, not separate user-facing commands.
 ## Agents
 
 - `.agents/agents/orchestrator/agent.md`
-- `.agents/agents/developer/agent.md`
 - `.agents/agents/platform-researcher/agent.md`
 - `.agents/agents/repo-researcher/agent.md`
 - `.agents/agents/reviewer/agent.md`
 - `.agents/agents/tester/agent.md`
+
+Execution roles, routed per-task by domain (see `.agents/skills/work/SKILL.md`'s "Execution
+Domain Routing"):
+
+- `.agents/agents/data-engineer/agent.md`
+- `.agents/agents/analytics-engineer/agent.md`
+- `.agents/agents/data-scientist/agent.md`
+- `.agents/agents/mlops-engineer/agent.md`
+- `.agents/agents/platform-engineer/agent.md`
+- `.agents/agents/frontend-engineer/agent.md`
+- `.agents/agents/generalist-developer/agent.md` (fallback when no domain fits)
 
 ## Templates
 
@@ -113,6 +123,8 @@ Expected project-local outputs:
 - `.agents/references/review-checklist.md`
 - `.agents/references/test-ladder.md`
 - `.agents/references/verification-checklist.md`
+- `.agents/references/engineering-standards.md`
+- `.agents/references/branch-and-pr-workflow.md`
 
 ## Core Rules
 
@@ -184,7 +196,9 @@ Every subagent handoff should be explicit about:
 Recommended defaults:
 
 - orchestrator: highest reasoning
-- developer: medium to high reasoning based on task size
+- execution roles (data-engineer, analytics-engineer, data-scientist, mlops-engineer,
+  platform-engineer, frontend-engineer, generalist-developer): medium to high reasoning based on
+  task size
 - repo-researcher: medium reasoning
 - platform-researcher: medium or high reasoning based on ambiguity
 - reviewer: medium reasoning
