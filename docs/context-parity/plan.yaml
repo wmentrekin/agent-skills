@@ -1,0 +1,247 @@
+# Contract: durable execution plan created by $work when the selected mode needs explicit planning
+
+artifact: plan
+feature: "context-parity"
+mode: "bounded-feature"
+status: draft
+owner_skill: work
+based_on: "docs/context-parity/requirements.yaml"
+
+objective: >
+  Close two confirmed framework gaps (implicit-only branch/PR rule; unused
+  Antigravity Always-On mechanism), strengthen tool-agnostic re-anchoring,
+  and make $work's own process artifacts (docs/<feature>/*.yaml) explicitly
+  ephemeral rather than permanent repo content — so Codex CLI and
+  Antigravity track the $work process closer to Claude Code's observed
+  reliability, without overclaiming a guarantee no research source
+  supports, and so consuming repos don't accumulate scratch coordination
+  docs as permanent history.
+
+approach:
+  summary: >
+    Doc/framework-only change set across agent-skills. One cohesive execution
+    batch (tasks are tightly coupled — several touch the same files — so a
+    single agent does them in order rather than splitting into parallel
+    domain subagents). No consuming-repo edits; changes reach the 5 projects
+    via their next `git subtree pull`.
+  key_decisions:
+    - "State the no-direct-to-main rule as a literal, explicit sentence in branch-and-pr-workflow.md, cross-referenced from SKILL.md, rather than leaving it implied by step ordering."
+    - "Move feature-branch creation to immediately after mode classification (new early step), before status.yaml/requirements.yaml/plan.yaml are first written, for every mode including quick-fix — closing the gap repo-researcher found in SKILL.md's current step order."
+    - "Add .agents/rules/ (Antigravity Always-On) as a new, generic, subtree-portable mechanism — first use of this capability in the framework. Content must be verified against Antigravity's current documented rule-file frontmatter/activation-mode syntax before writing (do not guess the schema)."
+    - "Strengthen re-anchoring to trigger at every internal stage transition (not just a one-time first read), worded tool-agnostically — this also hedges Claude Code's own reported (unresolved) CLAUDE.md-after-/compact issue, not just Codex/Antigravity."
+    - "Do not promise parity for Codex CLI specifically — its drift is partly attributed by OpenAI to model training, not something a docs framework can fix. Frame Codex changes as best-effort re-anchoring, not a solved problem."
+    - "Record research findings in provider-notes.md with sources/dates so this investigation isn't repeated from scratch."
+    - "Investigation-mode branch churn (reviewer-flagged): user chose to accept and document it rather than exempt investigation mode — every mode branches immediately, uniformly, no exceptions. Simpler rule, fewer special cases to lose track of under context pressure, which is the whole point of this feature."
+    - "docs/<feature>/*.yaml artifacts are ephemeral $work coordination scratch, not deliverables (user-directed addition). Deleted from the branch, as a committed removal, once the user confirms they are merging — never left in the merged history. Pre-existing project docs the feature touches are unaffected by this and must still be kept up to date."
+
+contracts:
+  interfaces: []
+  schemas:
+    - "templates/status.yaml gains a top-level `branching: { branch_name: \"\" }` field, populated at creation time now that the branch exists before status.yaml is first written."
+  config_changes: []
+
+branching:
+  strategy: "single-branch"
+  branch_name: "work/context-parity"
+  worktrees: []
+
+execution_batches:
+  - id: "B1"
+    goal: "Close the branch/PR and re-anchoring gaps; ship the framework doc/rule changes."
+    tasks:
+      - id: "T1"
+        title: "Make the no-direct-to-main rule explicit"
+        objective: >
+          Add a literal prohibition sentence (e.g. "Never commit directly to
+          the base/main branch under any mode — all code and doc changes
+          land via a feature branch and PR.") to references/branch-and-pr-workflow.md's
+          top, and add a matching bullet to AGENTS.md's Core Rules section.
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - "references/branch-and-pr-workflow.md"
+          - "AGENTS.md (Core Rules section)"
+        forbidden_scope:
+          - "skills/work/SKILL.md Process step list (handled in T2)"
+        dependencies: []
+        parallelizable: false
+        expected_validation:
+          - "Explicit prohibition sentence present and unambiguous, not just implied by step ordering."
+
+      - id: "T2"
+        title: "Move branch creation before any docs/<feature>/ artifact write"
+        objective: >
+          Reorder skills/work/SKILL.md's Process so the feature branch is
+          created immediately after mode classification (new step 2), before
+          status.yaml (now step 3), requirements.yaml, and plan.yaml are
+          written — for every mode, including investigation and quick-fix.
+          Update references/branch-and-pr-workflow.md's "Branch Creation"
+          section to match the new timing ("immediately after mode
+          classification" not "after the pre-execution checkpoint"), and add
+          an explicit accepted-tradeoff note: investigation-mode sessions
+          that conclude with no follow-up work will leave an unused local
+          branch behind — this is expected, not a bug — plus one line of
+          cleanup guidance (delete the branch if the session ends with no
+          artifacts worth keeping). Update references/workflow-architecture.md
+          by adding one sentence under "## Internal Stages" stating branch
+          creation happens immediately after mode classification, before
+          Discovery's own work begins, and remove the now-inaccurate
+          "creating the feature branch" bullet from Execution's "Owns" list
+          (Execution still owns opening the PR and worktrees for parallel
+          domains). State explicitly that plan.yaml's `branching.branch_name`
+          must be copied from status.yaml's `branching.branch_name` at
+          planning time, not re-decided, since the branch already exists by
+          then. Reword quick-fix mode's "broad planning would be overhead"
+          framing (workflow-architecture.md) to clarify branching itself is
+          not the overhead being skipped.
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - "skills/work/SKILL.md (Process section)"
+          - "references/branch-and-pr-workflow.md (Branch Creation section)"
+          - "references/workflow-architecture.md (Internal Stages, Modes, Stage Guidance: Execution)"
+          - "templates/status.yaml (add branching.branch_name field)"
+        forbidden_scope:
+          - "templates/plan.yaml's existing branching block structure (leave fields as-is; only its branch_name value is now sourced from status.yaml rather than freshly decided)"
+        dependencies: ["T1"]
+        parallelizable: false
+        expected_validation:
+          - "Reading SKILL.md's Process top to bottom, branch creation clearly precedes every docs/<feature>/*.yaml write, for every mode."
+          - "templates/status.yaml has a branching.branch_name field consumable at creation time."
+          - "branch-and-pr-workflow.md explicitly names the investigation-mode branch-churn tradeoff and gives cleanup guidance, rather than leaving it unstated."
+
+      - id: "T3"
+        title: "Add Antigravity Always-On rule for $work invariants"
+        objective: >
+          Before writing anything, fetch and confirm Antigravity's current
+          documented rule-file format (frontmatter fields, activation-mode
+          values, file location convention — including whether `.agents/rules/`
+          or the legacy `.agent/rules/` is the correct current path) from
+          antigravity.google/docs/rules-workflows/ — do not guess the
+          schema. Then create a new file under .agents/rules/ (canonical
+          source; propagates to consumers via subtree) using Always-On
+          activation, restating in dense, compact form: the four internal
+          stages (discovery/planning/execution/verification), the
+          instruction to check docs/<feature>/status.yaml for current
+          stage/objective before acting, and the explicit no-direct-to-main
+          rule from T1. Keep it well under the 12,000-char cap — this is a
+          reminder, not a doc reproduction. Also confirm this repo's own
+          .gitignore does not exclude .agents/ or .agent/ (it currently only
+          excludes INITIAL_CONTEXT.md; re-check after adding the new
+          directory), since Antigravity is documented to silently fail to
+          load rules from a gitignored path.
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - ".agents/rules/ (new directory and file)"
+        forbidden_scope:
+          - "Do not duplicate full SKILL.md or AGENTS.md content — this is a condensed always-on reminder only."
+        dependencies: ["T1"]
+        parallelizable: false
+        expected_validation:
+          - "File uses verified-current Antigravity frontmatter/activation syntax, not assumed syntax — the implementation-report.yaml entry for this task must cite the exact source URL, the fetch/verification date, and quote the specific frontmatter field name(s) and activation-mode value used, so this is checkable rather than self-reported."
+          - "Content under 12,000 chars."
+          - "Confirmed .agents/ and .agent/ are not present in .gitignore."
+          - "provider-notes.md's Antigravity row is updated to reflect that .agents/rules/ is now populated, and how."
+
+      - id: "T4"
+        title: "Repeated stage-transition re-anchoring (tool-agnostic)"
+        objective: >
+          Strengthen AGENTS.md's "First Read Order" (and/or SKILL.md's Must
+          Read First) so re-reading status.yaml + the core workflow files is
+          explicitly triggered at every internal stage transition
+          (discovery→planning, planning→execution, execution→verification),
+          not only once at session start. Word this tool-agnostically: it
+          should read as good practice for any tool, explicitly noting it
+          also hedges against compaction-related instruction loss (cite the
+          general risk, not a specific unresolved GitHub issue number, to
+          avoid the doc going stale).
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - "AGENTS.md (First Read Order section)"
+          - "skills/work/SKILL.md (Must Read First / Process, if a cross-reference is needed)"
+        forbidden_scope: []
+        dependencies: ["T2"]
+        parallelizable: false
+        expected_validation:
+          - "Re-anchoring instruction is explicitly tied to stage transitions, not just first read."
+
+      - id: "T5"
+        title: "Record research findings in provider-notes.md"
+        objective: >
+          Add a dated section to references/provider-notes.md summarizing
+          this investigation's key sourced findings (Codex CLI's one-shot
+          AGENTS.md load and 32 KiB truncation cap with no warning;
+          Antigravity's Always-On mode and its undocumented compaction
+          behavior plus the two related bugs found; Claude Code's own
+          unresolved CLAUDE.md-after-/compact report) with sources and
+          dates, and bump the file's "Last verified" line.
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - "references/provider-notes.md"
+        forbidden_scope: []
+        dependencies: ["T3", "T4"]
+        parallelizable: false
+        expected_validation:
+          - "Every claim has a cited source and date, consistent with this file's existing style."
+
+      - id: "T6"
+        title: "Make docs/<feature>/ process artifacts ephemeral: delete before merge"
+        objective: >
+          User-directed addition: docs/<feature>/status.yaml,
+          requirements.yaml, plan.yaml, and implementation-report.yaml (and
+          any task-handoff.yaml instances actually written to disk) are
+          $work's own live coordination scratch state, not project
+          deliverables — they must not persist in the repo after merge. Add
+          a new final step to skills/work/SKILL.md's Process (after
+          verification, distinct from step 12's complete/loop/stop
+          decision): once the user explicitly confirms they are merging the
+          PR, delete the entire docs/<feature>/ directory from the branch
+          (git rm -r) and push that removal as the final commit before the
+          user merges. Add a matching bullet to references/branch-and-pr-workflow.md's
+          "Completion" section stating this explicitly, and clarify the
+          scope boundary: this deletion applies only to $work's own
+          generated docs/<feature>/ directory — any genuinely pre-existing
+          project documentation (README, existing docs/ content, etc.) that
+          the feature touched must remain updated in place, never deleted.
+          Update AGENTS.md's "Templates" section (which currently lists
+          "Expected project-local outputs: docs/<feature>/status.yaml..."
+          with no lifecycle note) to state these outputs are ephemeral and
+          removed at merge time. As a live demonstration, this task also
+          deletes agent-skills' own docs/context-parity/ directory from
+          work/context-parity — but only after the user has confirmed they
+          are merging this feature's PR, not before (do not delete the
+          artifacts this plan itself depends on while the PR is still under
+          review).
+        assigned_domain: "generalist-developer"
+        owned_scope:
+          - "skills/work/SKILL.md (Process — new post-verification step)"
+          - "references/branch-and-pr-workflow.md (Completion section)"
+          - "AGENTS.md (Templates section)"
+          - "docs/context-parity/ (deleted only after user merge confirmation, as the final action of this feature — not part of T1-T5's commit)"
+        forbidden_scope:
+          - "Any pre-existing project documentation outside docs/<feature>/ scratch directories — never delete those."
+        dependencies: ["T1", "T2"]
+        parallelizable: false
+        expected_validation:
+          - "SKILL.md and branch-and-pr-workflow.md both state the deletion trigger is explicit user merge confirmation, not automatic post-verification cleanup."
+          - "The scope boundary (ephemeral $work docs vs. pre-existing project docs) is stated unambiguously enough that a future agent can't misread it as license to delete arbitrary docs/ content."
+          - "docs/context-parity/ is removed from work/context-parity only after the user has confirmed merge intent for this PR, as the orchestrator's last action before handoff."
+
+ordering_notes:
+  - "Sequential single-agent execution: T1 -> T2 -> T3 -> T4 -> T5 -> T6's doc edits. T6's actual deletion of docs/context-parity/ happens later, gated on the user's merge confirmation — not bundled into the same commit as T1-T5."
+
+risks:
+  - "Antigravity Always-On rules may not actually survive compaction (no documentation confirms this) — T3 is the best available lever per current evidence, not a guaranteed fix. Framed as best-effort in requirements.yaml's assumptions."
+  - "Codex CLI has no re-injection mechanism at all — T4's stage-transition re-anchoring is conversational, not architectural, so Codex parity will remain partial regardless of these changes."
+  - "Reordering SKILL.md's Process (T2) is a structural change to a well-established document — must preserve the pre-execution checkpoint's semantics and not weaken the loop-cap or checkpoint rules while reordering."
+  - "ACCEPTED TRADEOFF (reviewer-flagged, needs explicit user sign-off at checkpoint): closing the 'artifacts written on main' gap for every mode, including investigation, means an investigation-only session that concludes with no follow-up work will still have created a branch. T2 now documents this as expected with cleanup guidance rather than leaving it silent, but the underlying tradeoff (branch churn vs. artifacts-on-main) is real and the user should confirm they want it resolved this way rather than by exempting investigation mode."
+
+open_questions: []
+
+review:
+  status: "revised after reviewer pass 1"
+  loop_count: 1
+  notes:
+    - "Reviewer pass 1 (planning stage): flagged T3's schema-verification step as unenforceable and T2's investigation-mode branch-churn tradeoff as unnamed. Both addressed inline in T2/T3 above. Reviewer's other two findings (workflow-architecture.md edit target underspecified; status/plan branch_name relationship unstated) also folded into T2's objective. Loop count 1/2 — still within cap."
+
+checkpoint:
+  required_before_execution: true
+  status: pending
