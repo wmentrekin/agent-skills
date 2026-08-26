@@ -15,8 +15,8 @@ objective: >
   requirement so it applies unambiguously across all $work stages.
 
 summary:
-  current_focus: "Execution complete (T1-T5 + T6 doc edits); opening PR, then running reviewer verification"
-  last_completed: "generalist-developer executed T1-T6; orchestrator added one small unplanned README.md fix (Antigravity manual-activation step, surfaced by T3's own research)"
+  current_focus: "Complete — awaiting user review/merge decision on PR #2"
+  last_completed: "Verification passed (no blocking issues, posted to PR #2); one non-blocking wording nit fixed and pushed"
   current_blocker: ""
 
 artifacts:
@@ -25,9 +25,9 @@ artifacts:
   implementation_report: "docs/context-parity/implementation-report.yaml"
 
 pr:
-  number: null
-  url: null
-  status: "not_opened"
+  number: 2
+  url: "https://github.com/wmentrekin/agent-skills/pull/2"
+  status: "open"
 
 agents:
   - id: "orchestrator"
@@ -64,6 +64,6 @@ decisions:
   - "User checkpoint (round 2, mid-turn addition): docs/<feature>/*.yaml are ephemeral $work scratch, deleted from the branch once the user confirms merge intent — added as T6. Does not apply to pre-existing project docs."
   - "User checkpoint (round 3): Proceed. Execution approved for T1-T6's doc edits; T6's actual deletion of docs/context-parity/ is deferred until the user explicitly confirms they are merging this PR."
 
-next_action: "Spawn repo-researcher (repo-local: existing anchoring mechanisms, root AGENTS.md sizes across consuming projects, branch/PR rule coverage) and platform-researcher (external: Codex CLI / Antigravity / Claude Code context retention and compaction mechanics) in parallel."
+next_action: "User reviews PR #2 (https://github.com/wmentrekin/agent-skills/pull/2). On merge confirmation, delete docs/context-parity/ as a final commit before merge, per T6."
 next_recommended_command: "$work"
 user_input_needed: false
