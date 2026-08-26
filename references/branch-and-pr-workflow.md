@@ -15,7 +15,7 @@ Create the feature branch immediately after mode classification, before any
 quick-fix:
 
 - default: a single branch `work/<feature-slug>` off the current branch
-- record it in `docs/<feature>/status.yaml` under `branching.branch_name` at creation time
+- record it in `docs/<feature>/status.yaml` under `branching.branch_name` when status.yaml is first written
 - `plan.yaml` (once it exists) copies the same value into its own `branching.branch_name` rather
   than re-deciding it — the branch already exists by planning time
 
