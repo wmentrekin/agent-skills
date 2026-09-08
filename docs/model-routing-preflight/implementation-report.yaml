@@ -70,8 +70,10 @@ local_validation:
     - "No executable application tests exist in this documentation-only repository."
 
 review_summary:
-  status: not_started
-  key_findings: []
+  status: corrections_applied
+  key_findings:
+    - "Correction cycle 1: made planning and implementation artifacts optional in generalized subagent handoffs."
+    - "Correction cycle 1: added auditable local-before, fetched-remote, and local-after commit evidence to repository synchronization."
 
 test_summary:
   status: not_started

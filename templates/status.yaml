@@ -15,7 +15,9 @@ repository_sync:
     - path: ""
       remote: ""
       relevant_branch: ""
-      starting_commit: ""
+      local_commit_before: ""
+      remote_commit_after_fetch: ""
+      local_commit_after: ""
       result: "current"
       notes: ""
 

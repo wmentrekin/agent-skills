@@ -24,7 +24,8 @@ For each repository:
    primary checkout
 5. in a feature worktree or detached checkout, fetch and compare against the remote base instead
    of switching branches or pulling into the worktree
-6. record the result before any other workflow action
+6. record the local commit before synchronization, fetched remote commit, local commit after
+   synchronization, and result before any other workflow action
 
 ## Safety Rules
 

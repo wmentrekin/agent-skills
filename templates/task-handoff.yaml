@@ -30,9 +30,10 @@ objective: ""
 why_this_matters: ""
 
 inputs:
-  requirements: "docs/<feature>/requirements.yaml"
-  plan: "docs/<feature>/plan.yaml"
-  implementation_report: "docs/<feature>/implementation-report.yaml"
+  status: "docs/<feature>/status.yaml"
+  requirements: null
+  plan: null
+  implementation_report: null
   relevant_paths: []
 
 scope:
