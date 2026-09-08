@@ -23,8 +23,8 @@ branching:
   branch_name: "work/model-routing-preflight"
 
 summary:
-  current_focus: "Open and review the implementation PR."
-  last_completed: "Integrated synchronization and model-routing contracts and completed local validation."
+  current_focus: "Await user review of PR #3."
+  last_completed: "PR review and verification passed after one correction cycle."
   current_blocker: ""
 
 artifacts:
@@ -35,7 +35,7 @@ artifacts:
 pr:
   number: 3
   url: "https://github.com/wmentrekin/agent-skills/pull/3"
-  status: open
+  status: ready_for_review
 
 agents:
   - id: orchestrator
@@ -48,10 +48,10 @@ agents:
     actual_reasoning: "not exposed"
     routing_enforced: false
     escalation_count: 0
-    status: active
+    status: completed
     stage: verification
-    task: "Open the PR, inspect its diff, and report review findings."
-    last_update: "YAML parsing, path coverage, and diff checks passed."
+    task: "Opened and reviewed PR #3."
+    last_update: "No remaining findings; contract assertions and PR checks pass."
     blocker: ""
 
 loops:
@@ -84,6 +84,6 @@ model_routing:
   unresolved_limitations:
     - "This runtime does not expose the actual underlying model name or reasoning setting."
 
-next_action: "Review PR #3 and report findings and readiness."
+next_action: "User reviews PR #3 and decides whether to merge."
 next_recommended_command: "$work"
-user_input_needed: false
+user_input_needed: true
