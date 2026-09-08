@@ -3,9 +3,11 @@
 artifact: task_handoff
 feature: "<feature-slug>"
 mode: "bounded-feature"
-execution_batch_id: ""
+stage: "discovery"
+execution_batch_id: null
 task_id: ""
-assigned_domain: ""
+assigned_role: ""
+assigned_domain: null
 branch: ""
 owner_skill: work
 

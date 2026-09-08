@@ -72,7 +72,7 @@ local_validation:
 review_summary:
   status: corrections_applied
   key_findings:
-    - "Correction cycle 1: made planning and implementation artifacts optional in generalized subagent handoffs."
+    - "Correction cycle 1: made stage, execution, role, planning, and implementation fields valid for generalized subagent handoffs."
     - "Correction cycle 1: added auditable local-before, fetched-remote, and local-after commit evidence to repository synchronization."
 
 test_summary:
