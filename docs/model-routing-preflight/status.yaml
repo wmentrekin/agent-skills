@@ -31,9 +31,9 @@ artifacts:
   implementation_report: "docs/model-routing-preflight/implementation-report.yaml"
 
 pr:
-  number: null
-  url: null
-  status: not_opened
+  number: 3
+  url: "https://github.com/wmentrekin/agent-skills/pull/3"
+  status: open
 
 agents:
   - id: orchestrator
@@ -82,6 +82,6 @@ model_routing:
   unresolved_limitations:
     - "This runtime does not expose the actual underlying model name or reasoning setting."
 
-next_action: "Commit and push changes, open the PR, then run PR review."
+next_action: "Review PR #3 and report findings and readiness."
 next_recommended_command: "$work"
 user_input_needed: false

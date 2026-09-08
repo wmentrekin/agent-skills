@@ -37,8 +37,8 @@ model_usage:
     - "The current runtime did not expose per-task model selection or actual model metadata."
 
 pr:
-  number: null
-  url: null
+  number: 3
+  url: "https://github.com/wmentrekin/agent-skills/pull/3"
 
 changes:
   files:
